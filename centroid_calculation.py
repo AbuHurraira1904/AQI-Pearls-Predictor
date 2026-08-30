@@ -1,7 +1,12 @@
 import configparser
+import json
+from fetch import fetch_all_uids
 from validate import get_aqi_dataFrame
 
-df = get_aqi_dataFrame()
+with open("aqi_data_snapshot.json", "r") as file:
+        aqi_data = json.load(file)
+
+df = get_aqi_dataFrame(aqi_data)
 
 valid_geo = df.dropna(subset=["latitude", "longitude"])
 
@@ -15,6 +20,6 @@ config["CENTROID"] = {
     "station_count": str(len(valid_geo))
 }
 
-config_filename = "centroid_config.ini"
+config_filename = "city_centroid.ini"
 with open(config_filename, "w") as configfile:
     config.write(configfile)

@@ -1,0 +1,986 @@
+{
+    "-541198": {
+        "aqi": 91,
+        "idx": -541198,
+        "attributions": [
+            {
+                "url": "https://urbanunit.gov.pk/",
+                "name": "The Urban Unit",
+                "station": "160764"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.602875,
+                74.300927
+            ],
+            "name": "Ravi Road",
+            "url": "https://aqicn.org/station/@541198",
+            "location": "Qasurpura, Qila Lachman Singh, Lahore City Tehsil, Lahore District, Lahore Division, Punjab, 54010, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "h": {
+                "v": 49
+            },
+            "pm1": {
+                "v": 68
+            },
+            "pm10": {
+                "v": 32
+            },
+            "pm25": {
+                "v": 91
+            },
+            "t": {
+                "v": 35.09
+            }
+        },
+        "time": {
+            "s": "2026-08-30 17:55:57",
+            "tz": "+05:00",
+            "v": 1788094557,
+            "iso": "2026-08-30T12:55:57Z"
+        }
+    },
+    "-576559": {
+        "aqi": 150,
+        "idx": -576559,
+        "attributions": [
+            {
+                "url": "https://aqi.punjab.gov.pk/",
+                "name": "Pakistan Punjab Air Quality Network",
+                "station": "25"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.57982567,
+                74.35500334
+            ],
+            "name": "GT Road",
+            "url": "https://aqicn.org/station/@576559",
+            "location": "University of Engineering and Technology, Ayesha Hall Road, Suchal Singhpura, Kot Khwaja Saeed, Begampura, Shalimar Tehsil, Lahore District, Lahore Division, Punjab, 54920, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "pm10": {
+                "v": 117
+            },
+            "pm25": {
+                "v": 150
+            }
+        },
+        "time": {
+            "s": "2026-08-30 16:00:00",
+            "tz": "+05:00",
+            "v": 1788087600,
+            "iso": "2026-08-30T11:00:00Z"
+        }
+    },
+    "-576577": {
+        "aqi": 117,
+        "idx": -576577,
+        "attributions": [
+            {
+                "url": "https://aqi.punjab.gov.pk/",
+                "name": "Pakistan Punjab Air Quality Network",
+                "station": "30"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.56094017,
+                74.33080805
+            ],
+            "name": "Egerton Road",
+            "url": "https://aqicn.org/station/@576577",
+            "location": "Aiwan-e-Iqbal, Egerton Road, Shimla Hill, Bibi Pak Daman, Civil Lines, Lahore City Tehsil, Lahore District, Lahore Division, Punjab, 54010, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "pm10": {
+                "v": 112
+            },
+            "pm25": {
+                "v": 117
+            }
+        },
+        "time": {
+            "s": "2026-08-30 16:00:00",
+            "tz": "+05:00",
+            "v": 1788087600,
+            "iso": "2026-08-30T11:00:00Z"
+        }
+    },
+    "-541186": {
+        "aqi": 64,
+        "idx": -541186,
+        "attributions": [
+            {
+                "url": "https://urbanunit.gov.pk/",
+                "name": "The Urban Unit",
+                "station": "160726"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.562302,
+                74.3027031
+            ],
+            "name": "Sandha Road",
+            "url": "https://aqicn.org/station/@541186",
+            "location": "MAO College, Naseer-ud-Din Road, Islampura, Lahore, Lahore City Tehsil, Lahore District, Lahore Division, Punjab, 54010, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "h": {
+                "v": 47
+            },
+            "pm1": {
+                "v": 32
+            },
+            "pm10": {
+                "v": 20
+            },
+            "pm25": {
+                "v": 64
+            },
+            "t": {
+                "v": 36
+            }
+        },
+        "time": {
+            "s": "2026-08-30 17:40:56",
+            "tz": "+05:00",
+            "v": 1788093656,
+            "iso": "2026-08-30T12:40:56Z"
+        }
+    },
+    "-543349": {
+        "aqi": 89,
+        "idx": -543349,
+        "attributions": [
+            {
+                "url": "https://urbanunit.gov.pk/",
+                "name": "The Urban Unit",
+                "station": "161671"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.541983,
+                74.298065
+            ],
+            "name": "Samanabad",
+            "url": "https://aqicn.org/station/@543349",
+            "location": "Nawankot, Samanabad, Lahore, Lahore City Tehsil, Lahore District, Lahore Division, Punjab, 54500, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "h": {
+                "v": 43
+            },
+            "pm1": {
+                "v": 63
+            },
+            "pm10": {
+                "v": 30
+            },
+            "pm25": {
+                "v": 89
+            },
+            "t": {
+                "v": 37.2
+            }
+        },
+        "time": {
+            "s": "2026-08-30 17:56:09",
+            "tz": "+05:00",
+            "v": 1788094569,
+            "iso": "2026-08-30T12:56:09Z"
+        }
+    },
+    "-543340": {
+        "aqi": 78,
+        "idx": -543340,
+        "attributions": [
+            {
+                "url": "https://urbanunit.gov.pk/",
+                "name": "The Urban Unit",
+                "station": "161653"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.539422,
+                74.413792
+            ],
+            "name": "Cantonment",
+            "url": "https://aqicn.org/station/@543340",
+            "location": "Sector B, Askari X, Derh Pindi, Lahore Cantonment Tehsil, Lahore District, Lahore Division, Punjab, 54810, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "h": {
+                "v": 42
+            },
+            "pm1": {
+                "v": 55
+            },
+            "pm10": {
+                "v": 23
+            },
+            "pm25": {
+                "v": 78
+            },
+            "t": {
+                "v": 37.5
+            }
+        },
+        "time": {
+            "s": "2026-08-30 17:56:10",
+            "tz": "+05:00",
+            "v": 1788094570,
+            "iso": "2026-08-30T12:56:10Z"
+        }
+    },
+    "-540745": {
+        "aqi": 135,
+        "idx": -540745,
+        "attributions": [
+            {
+                "url": "https://urbanunit.gov.pk/",
+                "name": "The Urban Unit",
+                "station": "160333"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.525621,
+                74.436078
+            ],
+            "name": "Learning Alliance Intl. DHA",
+            "url": "https://aqicn.org/station/@540745",
+            "location": "Learning Alliance - Lahore Preschool DHA, 32/1, J Block DHA Phase 8, Bao Wala Barki Rd, Lahore, Lahore Cantonment Tehsil, Lahore District, Lahore Division, Punjab, 53200, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "h": {
+                "v": 45
+            },
+            "pm1": {
+                "v": 94
+            },
+            "pm10": {
+                "v": 53
+            },
+            "pm25": {
+                "v": 135
+            },
+            "t": {
+                "v": 35.09
+            }
+        },
+        "time": {
+            "s": "2026-08-30 17:14:15",
+            "tz": "+05:00",
+            "v": 1788092055,
+            "iso": "2026-08-30T12:14:15Z"
+        }
+    },
+    "-544087": {
+        "aqi": 83,
+        "idx": -544087,
+        "attributions": [
+            {
+                "url": "https://urbanunit.gov.pk/",
+                "name": "The Urban Unit",
+                "station": "162048"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.521146,
+                74.333954
+            ],
+            "name": "Forman Christian College & Chartered University",
+            "url": "https://aqicn.org/station/@544087",
+            "location": "Forman Christian College, Syed Maratib Ali Road, Shah Jamal, Lahore, Model Town Tehsil, Lahore District, Lahore Division, Punjab, 57760, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "h": {
+                "v": 47
+            },
+            "pm1": {
+                "v": 64
+            },
+            "pm10": {
+                "v": 26
+            },
+            "pm25": {
+                "v": 83
+            },
+            "t": {
+                "v": 35.3
+            }
+        },
+        "time": {
+            "s": "2026-08-30 17:56:03",
+            "tz": "+05:00",
+            "v": 1788094563,
+            "iso": "2026-08-30T12:56:03Z"
+        }
+    },
+    "-570997": {
+        "aqi": 86,
+        "idx": -570997,
+        "attributions": [
+            {
+                "url": "https://urbanunit.gov.pk/",
+                "name": "The Urban Unit",
+                "station": "175988"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.522056,
+                74.314944
+            ],
+            "name": "ARC, Lahore",
+            "url": "https://aqicn.org/station/@570997",
+            "location": "Ichhra, Model Town Tehsil, Lahore District, Lahore Division, Punjab, 54357, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "h": {
+                "v": 45
+            },
+            "pm1": {
+                "v": 69
+            },
+            "pm10": {
+                "v": 27
+            },
+            "pm25": {
+                "v": 86
+            },
+            "t": {
+                "v": 36.4
+            }
+        },
+        "time": {
+            "s": "2026-08-30 17:55:40",
+            "tz": "+05:00",
+            "v": 1788094540,
+            "iso": "2026-08-30T12:55:40Z"
+        }
+    },
+    "-542224": {
+        "aqi": 86,
+        "idx": -542224,
+        "attributions": [
+            {
+                "url": "https://urbanunit.gov.pk/",
+                "name": "The Urban Unit",
+                "station": "161272"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.508051,
+                74.337544
+            ],
+            "name": "Gulberg III",
+            "url": "https://aqicn.org/station/@542224",
+            "location": "Mohsin Shaheen Construction Company, Main Boulevard Gulberg, Garden Town, Model Town Tehsil, Lahore District, Lahore Division, Punjab, 54610, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "h": {
+                "v": 44
+            },
+            "pm1": {
+                "v": 61
+            },
+            "pm10": {
+                "v": 27
+            },
+            "pm25": {
+                "v": 86
+            },
+            "t": {
+                "v": 35.09
+            }
+        },
+        "time": {
+            "s": "2026-08-30 17:55:44",
+            "tz": "+05:00",
+            "v": 1788094544,
+            "iso": "2026-08-30T12:55:44Z"
+        }
+    },
+    "-541402": {
+        "aqi": 86,
+        "idx": -541402,
+        "attributions": [
+            {
+                "url": "https://urbanunit.gov.pk/",
+                "name": "The Urban Unit",
+                "station": "160918"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.491676,
+                74.313288
+            ],
+            "name": "Model Town",
+            "url": "https://aqicn.org/station/@541402",
+            "location": "Model Town, Lahore, Model Town Tehsil, Lahore District, Lahore Division, Punjab, 54600, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "h": {
+                "v": 46
+            },
+            "pm1": {
+                "v": 61
+            },
+            "pm10": {
+                "v": 27
+            },
+            "pm25": {
+                "v": 86
+            },
+            "t": {
+                "v": 34.59
+            }
+        },
+        "time": {
+            "s": "2026-08-30 17:55:43",
+            "tz": "+05:00",
+            "v": 1788094543,
+            "iso": "2026-08-30T12:55:43Z"
+        }
+    },
+    "-541369": {
+        "aqi": 89,
+        "idx": -541369,
+        "attributions": [
+            {
+                "url": "https://urbanunit.gov.pk/",
+                "name": "The Urban Unit",
+                "station": "160790"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.495322,
+                74.295056
+            ],
+            "name": "IEEE, Punjab University, LHR",
+            "url": "https://aqicn.org/station/@541369",
+            "location": "University of the Punjab, Noor-ul-Amin Road, Mustafa Town, Lahore, Model Town Tehsil, Lahore District, Lahore Division, Punjab, 54570, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "h": {
+                "v": 48
+            },
+            "pm1": {
+                "v": 63
+            },
+            "pm10": {
+                "v": 30
+            },
+            "pm25": {
+                "v": 89
+            },
+            "t": {
+                "v": 35.2
+            }
+        },
+        "time": {
+            "s": "2026-08-30 17:56:05",
+            "tz": "+05:00",
+            "v": 1788094565,
+            "iso": "2026-08-30T12:56:05Z"
+        }
+    },
+    "-576556": {
+        "aqi": 134,
+        "idx": -576556,
+        "attributions": [
+            {
+                "url": "https://aqi.punjab.gov.pk/",
+                "name": "Pakistan Punjab Air Quality Network",
+                "station": "23"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.47965946,
+                74.26608654
+            ],
+            "name": "Punjab University",
+            "url": "https://aqicn.org/station/@576556",
+            "location": "Lahore, Lahore City Tehsil, Lahore District, Lahore Division, Punjab, 54782, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "pm10": {
+                "v": 104
+            },
+            "pm25": {
+                "v": 134
+            }
+        },
+        "time": {
+            "s": "2026-08-30 16:00:00",
+            "tz": "+05:00",
+            "v": 1788087600,
+            "iso": "2026-08-30T11:00:00Z"
+        }
+    },
+    "-540817": {
+        "aqi": 74,
+        "idx": -540817,
+        "attributions": [
+            {
+                "url": "https://urbanunit.gov.pk/",
+                "name": "The Urban Unit",
+                "station": "160338"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.4571645,
+                74.4106586
+            ],
+            "name": "HBFC Society, DHA Phase 5 (Hussainy House)",
+            "url": "https://aqicn.org/station/@540817",
+            "location": "H.B.F.C, Defence, Keer, Model Town Tehsil, Lahore District, Lahore Division, Punjab, 54792, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "h": {
+                "v": 48
+            },
+            "pm1": {
+                "v": 51
+            },
+            "pm10": {
+                "v": 22
+            },
+            "pm25": {
+                "v": 74
+            },
+            "t": {
+                "v": 34.9
+            }
+        },
+        "time": {
+            "s": "2026-08-30 17:55:44",
+            "tz": "+05:00",
+            "v": 1788094544,
+            "iso": "2026-08-30T12:55:44Z"
+        }
+    },
+    "-557800": {
+        "aqi": 123,
+        "idx": -557800,
+        "attributions": [
+            {
+                "url": "https://urbanunit.gov.pk/",
+                "name": "The Urban Unit",
+                "station": "167470"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.473135638585408,
+                74.23981655978756
+            ],
+            "name": "Thokar Niaz Baig",
+            "url": "https://aqicn.org/station/@557800",
+            "location": "Niaz Baig, Gopi Rai, Lahore City Tehsil, Lahore District, Lahore Division, Punjab, 53700, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "h": {
+                "v": 47
+            },
+            "pm1": {
+                "v": 86
+            },
+            "pm10": {
+                "v": 50
+            },
+            "pm25": {
+                "v": 123
+            },
+            "t": {
+                "v": 36.09
+            }
+        },
+        "time": {
+            "s": "2026-08-30 17:56:29",
+            "tz": "+05:00",
+            "v": 1788094589,
+            "iso": "2026-08-30T12:56:29Z"
+        }
+    },
+    "-576547": {
+        "aqi": 154,
+        "idx": -576547,
+        "attributions": [
+            {
+                "url": "https://aqi.punjab.gov.pk/",
+                "name": "Pakistan Punjab Air Quality Network",
+                "station": "19"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.46379729,
+                74.22594175
+            ],
+            "name": "Multan Road",
+            "url": "https://aqicn.org/station/@576547",
+            "location": "City Traffic Police Lines / Driving School / License and Testing Authority, National Highway, Tricon Village, Chung, Lahore City Tehsil, Lahore District, Lahore Division, Punjab, 53800, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "pm10": {
+                "v": 129
+            },
+            "pm25": {
+                "v": 154
+            }
+        },
+        "time": {
+            "s": "2026-08-30 16:00:00",
+            "tz": "+05:00",
+            "v": 1788087600,
+            "iso": "2026-08-30T11:00:00Z"
+        }
+    },
+    "-541762": {
+        "aqi": 76,
+        "idx": -541762,
+        "attributions": [
+            {
+                "url": "https://urbanunit.gov.pk/",
+                "name": "The Urban Unit",
+                "station": "161044"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.421799,
+                74.274837
+            ],
+            "name": "College Road",
+            "url": "https://aqicn.org/station/@541762",
+            "location": "Wapda Town, Model Town Tehsil, Lahore District, Lahore Division, Punjab, 54700, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "h": {
+                "v": 46
+            },
+            "pm1": {
+                "v": 47
+            },
+            "pm10": {
+                "v": 23
+            },
+            "pm25": {
+                "v": 76
+            },
+            "t": {
+                "v": 36.4
+            }
+        },
+        "time": {
+            "s": "2026-08-30 17:56:08",
+            "tz": "+05:00",
+            "v": 1788094568,
+            "iso": "2026-08-30T12:56:08Z"
+        }
+    },
+    "-569905": {
+        "aqi": 101,
+        "idx": -569905,
+        "attributions": [
+            {
+                "url": "https://urbanunit.gov.pk/",
+                "name": "The Urban Unit",
+                "station": "161661"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.418387,
+                74.345283
+            ],
+            "name": "Pak Arab",
+            "url": "https://aqicn.org/station/@569905",
+            "location": "Model Town Tehsil, Lahore District, Lahore Division, Punjab, 04200, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "h": {
+                "v": 44
+            },
+            "pm1": {
+                "v": 72
+            },
+            "pm10": {
+                "v": 36
+            },
+            "pm25": {
+                "v": 101
+            },
+            "t": {
+                "v": 36.2
+            }
+        },
+        "time": {
+            "s": "2026-08-30 17:56:11",
+            "tz": "+05:00",
+            "v": 1788094571,
+            "iso": "2026-08-30T12:56:11Z"
+        }
+    },
+    "-576562": {
+        "aqi": 117,
+        "idx": -576562,
+        "attributions": [
+            {
+                "url": "https://aqi.punjab.gov.pk/",
+                "name": "Pakistan Punjab Air Quality Network",
+                "station": "18"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.37096864,
+                74.36509796
+            ],
+            "name": "Kahna Nau",
+            "url": "https://aqicn.org/station/@576562",
+            "location": "Chandiya, Model Town Tehsil, Lahore District, Lahore Division, Punjab, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "pm10": {
+                "v": 106
+            },
+            "pm25": {
+                "v": 117
+            }
+        },
+        "time": {
+            "s": "2026-08-30 16:00:00",
+            "tz": "+05:00",
+            "v": 1788087600,
+            "iso": "2026-08-30T11:00:00Z"
+        }
+    },
+    "-576550": {
+        "aqi": 150,
+        "idx": -576550,
+        "attributions": [
+            {
+                "url": "https://aqi.punjab.gov.pk/",
+                "name": "Pakistan Punjab Air Quality Network",
+                "station": "24"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.38231477,
+                74.21817282
+            ],
+            "name": "Safari Park",
+            "url": "https://aqicn.org/station/@576550",
+            "location": "Lahore Wildlife Safari, Lahore Ring Road, Al-Kabeer Town, Fazaia Housing Scheme, Chamru Pur, Raiwind Tehsil, Lahore District, Lahore Division, Punjab, 53720, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "pm10": {
+                "v": 116
+            },
+            "pm25": {
+                "v": 150
+            }
+        },
+        "time": {
+            "s": "2026-08-30 16:00:00",
+            "tz": "+05:00",
+            "v": 1788087600,
+            "iso": "2026-08-30T11:00:00Z"
+        }
+    },
+    "-576565": {
+        "aqi": 113,
+        "idx": -576565,
+        "attributions": [
+            {
+                "url": "https://aqi.punjab.gov.pk/",
+                "name": "Pakistan Punjab Air Quality Network",
+                "station": "22"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.45594422,
+                74.46377265
+            ],
+            "name": "DHA Phase 6",
+            "url": "https://aqicn.org/station/@576565",
+            "location": "Lahore Cantonment Tehsil, Lahore District, Lahore Division, Punjab, 53201, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "pm10": {
+                "v": 113
+            },
+            "pm25": {
+                "v": 102
+            }
+        },
+        "time": {
+            "s": "2026-08-30 16:00:00",
+            "tz": "+05:00",
+            "v": 1788087600,
+            "iso": "2026-08-30T11:00:00Z"
+        }
+    },
+    "-576568": {
+        "aqi": 131,
+        "idx": -576568,
+        "attributions": [
+            {
+                "url": "https://aqi.punjab.gov.pk/",
+                "name": "Pakistan Punjab Air Quality Network",
+                "station": "12"
+            },
+            {
+                "url": "https://waqi.info/",
+                "name": "World Air Quality Index Project"
+            }
+        ],
+        "city": {
+            "geo": [
+                31.53590314,
+                74.43518805
+            ],
+            "name": "Barki Road",
+            "url": "https://aqicn.org/station/@576568",
+            "location": "Baoowala, Lahore Cantonment Tehsil, Lahore District, Lahore Division, Punjab, 53200, Pakistan"
+        },
+        "dominentpol": "pm25",
+        "iaqi": {
+            "pm10": {
+                "v": 73
+            },
+            "pm25": {
+                "v": 131
+            }
+        },
+        "time": {
+            "s": "2026-08-30 16:00:00",
+            "tz": "+05:00",
+            "v": 1788087600,
+            "iso": "2026-08-30T11:00:00Z"
+        }
+    }
+}
