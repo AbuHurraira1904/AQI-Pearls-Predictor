@@ -1,7 +1,6 @@
 import json
 import logging
 import pandas as pd
-import numpy as np
 from pathlib import Path
 
 def get_aqi_dataFrame():
@@ -74,52 +73,52 @@ def flag_outliers(df):
     df["is_outlier"] = (df["aqi"] - citywide_median_aqi).abs() > OUTLIER_DEVIATION_AQI
     return df
 
-def report(df, valid_df):
-    logging.info("Logging validation report...")
+def report(df, valid_df, logger):
+    logger.info("Logging validation report...")
 
     missing = df.isnull().sum()
     missing = missing[missing > 0]
     if not missing.empty:
-        logging.info("Missing values per column:\n%s", missing.to_string())
+        logger.info("Missing values per column:\n%s", missing.to_string())
  
     duplicate_stations = df.duplicated(subset=["station_id"]).sum()
     if duplicate_stations:
-        logging.warning("%d station(s) appeared more than once in this pull.", duplicate_stations)
+        logger.warning("%d station(s) appeared more than once in this pull.", duplicate_stations)
  
     if len(valid_df) < MIN_VALID_STATIONS:
-        logging.warning(
+        logger.warning(
             "Only %d valid stations (need %d+). This hour's aggregate may not be reliable.",
             len(valid_df), MIN_VALID_STATIONS,
         )
     else:
-        logging.info("Validation passed: %d/%d stations valid.", len(valid_df), len(df))
+        logger.info("Validation passed: %d/%d stations valid.", len(valid_df), len(df))
  
     stale_count = df["is_stale"].sum()
     range_count = df["is_invalid_range"].sum()
     outlier_count = df["is_outlier"].sum()
-    logging.info(
+    logger.info(
         "Excluded breakdown -- stale: %d, out-of-range: %d, outliers: %d",
         stale_count, range_count, outlier_count,
     )
  
     summary_cols = [c for c in ["aqi", "pm25", "pm10", "temperature", "humidity"] if c in valid_df]
-    logging.info(
+    logger.info(
         "Numerical summary (valid stations only):\n%s",
         valid_df[summary_cols].describe().to_string(),
     )
 
-def fill_shared_weather_data(valid_df):
+def fill_shared_weather_data(valid_df, logger):
     weather_source = valid_df[valid_df["attribution"] == WEATHER_SOURCE_NETWORK]
  
     if weather_source.empty:
         shared_weather = load_last_known_weather()
         if shared_weather is None:
-            logging.warning(
+            logger.warning(
                 "No Urban Unit stations available this hour and no prior "
                 "weather on record -- weather fields will be left blank."
             )
             return valid_df
-        logging.warning(
+        logger.warning(
             "No Urban Unit stations available this hour. Falling back to "
             "last known weather: %s", shared_weather,
         )
@@ -128,7 +127,7 @@ def fill_shared_weather_data(valid_df):
         save_last_known_weather(shared_weather)
  
     for field, value in shared_weather.items():
-        valid_df[field] = value
+        valid_df[field] = valid_df[field].fillna(value)
  
     return valid_df
  
@@ -157,9 +156,9 @@ def validate_aqi_data():
         & df[REQUIRED_FIELDS].notna().all(axis=1)
     ].copy()
 
-    valid_df = fill_shared_weather_data(valid_df)
-    
-    report(df, valid_df)
+    valid_df = fill_shared_weather_data(valid_df, logger)
+
+    report(df, valid_df, logger)
 
     json_string = valid_df.to_json(orient="records", date_format="iso")
     with open("clean_aqi_data.json", "w") as file:
