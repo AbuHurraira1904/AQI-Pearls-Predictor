@@ -13,7 +13,7 @@ if not AQICN_KEY:
 
 CITY = "Lahore"
 
-def fetch_single_uid(session, uid):
+def fetch_single_uid(session, uid, logger):
     try:
         response = session.get(f"https://api.waqi.info/feed/@{uid}/", timeout=10)
         if response.status_code == 200:
@@ -21,11 +21,11 @@ def fetch_single_uid(session, uid):
             if data.get("status") == "ok":
                 return uid, data.get("data", {})
             else:
-                logger.error(f"API Error for UID {uid}: {data.get('data')}")
+                logging.error(f"API Error for UID {uid}: {data.get('data')}")
         else:
-            logger.error(f"HTTP Error {response.status_code} for UID {uid}")
+            logging.error(f"HTTP Error {response.status_code} for UID {uid}")
     except requests.RequestException as e:
-        logger.error(f"Request failed for UID {uid}: {e}")
+        logging.error(f"Request failed for UID {uid}: {e}")
 
     return uid, None
 
@@ -46,7 +46,7 @@ def fetch_all_uids():
         session.params = {"token": AQICN_KEY}
 
         for uid in uids:
-            uid_res, data = fetch_single_uid(session, uid)
+            uid_res, data = fetch_single_uid(session, uid, logger)
             if data:
                 all_aqi_data[uid_res] = data
             time.sleep(0.1)

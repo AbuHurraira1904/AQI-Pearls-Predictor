@@ -3,13 +3,11 @@ import logging
 import pandas as pd
 from pathlib import Path
 
-def get_aqi_dataFrame():
-    with open("aqi_data.json", "r") as file:
-        aqi_data = json.load(file)
+def get_aqi_dataFrame(raw_aqi_data):
 
     records = []
 
-    for station_id, details in aqi_data.items():
+    for station_id, details in raw_aqi_data.items():
         city = details.get("city", {})
         geo = city.get("geo", [None, None])
         iaqi = details.get("iaqi", {})
@@ -26,7 +24,7 @@ def get_aqi_dataFrame():
             "pm1": pd.to_numeric(iaqi.get("pm1", {}).get("v"), errors="coerce"),
             "temperature": pd.to_numeric(iaqi.get("t", {}).get("v"), errors="coerce"),
             "humidity": pd.to_numeric(iaqi.get("h", {}).get("v"), errors="coerce"),
-            "timestamp": details.get("time", {}).get("s"),
+            "timestamp": details.get("time", {}).get("iso"),
             "attribution": details.get("attributions", [{}])[0].get("name") if details.get("attributions") else None
     }
         records.append(record)
@@ -107,43 +105,10 @@ def report(df, valid_df, logger):
         valid_df[summary_cols].describe().to_string(),
     )
 
-def fill_shared_weather_data(valid_df, logger):
-    weather_source = valid_df[valid_df["attribution"] == WEATHER_SOURCE_NETWORK]
- 
-    if weather_source.empty:
-        shared_weather = load_last_known_weather()
-        if shared_weather is None:
-            logger.warning(
-                "No Urban Unit stations available this hour and no prior "
-                "weather on record -- weather fields will be left blank."
-            )
-            return valid_df
-        logger.warning(
-            "No Urban Unit stations available this hour. Falling back to "
-            "last known weather: %s", shared_weather,
-        )
-    else:
-        shared_weather = weather_source[WEATHER_FIELDS].median().to_dict()
-        save_last_known_weather(shared_weather)
- 
-    for field, value in shared_weather.items():
-        valid_df[field] = valid_df[field].fillna(value)
- 
-    return valid_df
- 
-def load_last_known_weather():
-    if not LAST_KNOWN_WEATHER_PATH.exists():
-        return None
-    return json.loads(LAST_KNOWN_WEATHER_PATH.read_text())
- 
- 
-def save_last_known_weather(shared_weather: dict):
-    LAST_KNOWN_WEATHER_PATH.write_text(json.dumps(shared_weather))
-
-def validate_aqi_data():
+def validate_aqi_data(raw_aqi_data):
     logger = logging.getLogger("AQI_Validator")
 
-    df = get_aqi_dataFrame()
+    df = get_aqi_dataFrame(raw_aqi_data)
 
     df = flag_stale_data(df)
     df = flag_invalid_data(df)
@@ -156,13 +121,9 @@ def validate_aqi_data():
         & df[REQUIRED_FIELDS].notna().all(axis=1)
     ].copy()
 
-    valid_df = fill_shared_weather_data(valid_df, logger)
-
     report(df, valid_df, logger)
 
-    json_string = valid_df.to_json(orient="records", date_format="iso")
-    with open("clean_aqi_data.json", "w") as file:
-            json.dump(json_string, file, indent=4)
+    valid_df.to_json("clean_aqi_data.json", orient="records", indent=4, date_format="iso")
     logger.info("AQI data cleaning completed and %d records saved to clean_aqi_data.json.", len(valid_df))
     
     return valid_df
