@@ -16,7 +16,7 @@ def main():
     setup_logging()
 
     aqi_data = fetch_all_uids()
-    #validate_aqi_data()
+    valid_aqi_data = validate_aqi_data()
 
 if __name__ == "__main__":
     main()

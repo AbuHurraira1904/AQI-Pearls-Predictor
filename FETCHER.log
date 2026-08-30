@@ -1,2 +1,85 @@
 2026-08-30 16:07:13,753 [INFO] [AQI_Fetcher]: Fetching AQI data for 22 UIDs...
 2026-08-30 16:07:25,323 [INFO] [AQI_Fetcher]: AQI data fetching completed and 22 records saved to aqi_data.json.
+2026-08-30 17:21:53,111 [INFO] [root]: Logging validation report...
+2026-08-30 17:21:53,112 [INFO] [root]: Missing values per column:
+pm1            8
+temperature    8
+humidity       8
+2026-08-30 17:50:21,103 [INFO] [root]: Logging validation report...
+2026-08-30 17:50:21,108 [INFO] [root]: Missing values per column:
+pm1            8
+temperature    8
+humidity       8
+2026-08-30 17:50:21,110 [INFO] [root]: Validation passed: 14/22 stations valid.
+2026-08-30 17:50:21,110 [INFO] [root]: Excluded breakdown -- stale: 8, out-of-range: 0, outliers: 3
+2026-08-30 17:50:21,125 [INFO] [root]: Numerical summary (valid stations only):
+             aqi       pm25       pm10   temperature  humidity
+count  14.000000  14.000000  14.000000  1.400000e+01      14.0
+mean   82.142857  82.142857  26.142857  3.690000e+01      41.0
+std     9.272433   9.272433   4.605300  7.373650e-15       0.0
+min    65.000000  65.000000  18.000000  3.690000e+01      41.0
+25%    74.750000  74.750000  22.250000  3.690000e+01      41.0
+50%    82.000000  82.000000  26.000000  3.690000e+01      41.0
+75%    90.000000  90.000000  30.000000  3.690000e+01      41.0
+max    96.000000  96.000000  32.000000  3.690000e+01      41.0
+2026-08-30 17:50:21,127 [INFO] [AQI_Validator]: AQI data cleaning completed and 14 records saved to clean_aqi_data.json.
+2026-08-30 17:55:16,294 [INFO] [AQI_Fetcher]: Fetching AQI data for 22 UIDs...
+2026-08-30 17:55:26,978 [INFO] [AQI_Fetcher]: AQI data fetching completed and 22 records saved to aqi_data.json.
+2026-08-30 17:55:27,028 [INFO] [root]: Logging validation report...
+2026-08-30 17:55:27,028 [INFO] [root]: Missing values per column:
+pm1            8
+temperature    8
+humidity       8
+2026-08-30 17:55:27,028 [INFO] [root]: Validation passed: 13/22 stations valid.
+2026-08-30 17:55:27,028 [INFO] [root]: Excluded breakdown -- stale: 8, out-of-range: 0, outliers: 5
+2026-08-30 17:55:27,041 [INFO] [root]: Numerical summary (valid stations only):
+              aqi        pm25       pm10  temperature  humidity
+count   13.000000   13.000000  13.000000         13.0      13.0
+mean    86.461538   86.461538  28.769231         36.0      45.0
+std     14.869518   14.869518   8.217399          0.0       0.0
+min     64.000000   64.000000  20.000000         36.0      45.0
+25%     78.000000   78.000000  23.000000         36.0      45.0
+50%     83.000000   83.000000  25.000000         36.0      45.0
+75%     91.000000   91.000000  32.000000         36.0      45.0
+max    123.000000  123.000000  48.000000         36.0      45.0
+2026-08-30 17:55:27,043 [INFO] [AQI_Validator]: AQI data cleaning completed and 13 records saved to clean_aqi_data.json.
+2026-08-30 18:00:24,817 [INFO] [AQI_Fetcher]: Fetching AQI data for 22 UIDs...
+2026-08-30 18:00:39,112 [INFO] [AQI_Fetcher]: AQI data fetching completed and 22 records saved to aqi_data.json.
+2026-08-30 18:00:39,144 [INFO] [root]: Logging validation report...
+2026-08-30 18:00:39,144 [INFO] [root]: Missing values per column:
+pm1            8
+temperature    8
+humidity       8
+2026-08-30 18:00:39,145 [INFO] [root]: Validation passed: 14/22 stations valid.
+2026-08-30 18:00:39,145 [INFO] [root]: Excluded breakdown -- stale: 8, out-of-range: 0, outliers: 3
+2026-08-30 18:00:39,156 [INFO] [root]: Numerical summary (valid stations only):
+              aqi        pm25       pm10   temperature  humidity
+count   14.000000   14.000000  14.000000  1.400000e+01      14.0
+mean    91.571429   91.571429  30.928571  3.585000e+01      45.5
+std     19.743409   19.743409  10.336376  7.373650e-15       0.0
+min     64.000000   64.000000  20.000000  3.585000e+01      45.5
+25%     82.250000   82.250000  25.250000  3.585000e+01      45.5
+50%     86.500000   86.500000  27.000000  3.585000e+01      45.5
+75%     89.500000   89.500000  30.750000  3.585000e+01      45.5
+max    135.000000  135.000000  53.000000  3.585000e+01      45.5
+2026-08-30 18:00:39,158 [INFO] [AQI_Validator]: AQI data cleaning completed and 14 records saved to clean_aqi_data.json.
+2026-08-30 18:01:34,315 [INFO] [AQI_Fetcher]: Fetching AQI data for 22 UIDs...
+2026-08-30 18:01:51,949 [INFO] [AQI_Fetcher]: AQI data fetching completed and 22 records saved to aqi_data.json.
+2026-08-30 18:01:51,977 [INFO] [root]: Logging validation report...
+2026-08-30 18:01:51,979 [INFO] [root]: Missing values per column:
+pm1            8
+temperature    8
+humidity       8
+2026-08-30 18:01:51,979 [INFO] [root]: Validation passed: 19/22 stations valid.
+2026-08-30 18:01:51,979 [INFO] [root]: Excluded breakdown -- stale: 0, out-of-range: 0, outliers: 3
+2026-08-30 18:01:51,992 [INFO] [root]: Numerical summary (valid stations only):
+              aqi        pm25        pm10  temperature  humidity
+count   19.000000   19.000000   19.000000        19.00      19.0
+mean    98.578947   98.000000   49.157895        35.65      46.0
+std     22.126695   21.870833   34.168314         0.00       0.0
+min     64.000000   64.000000   20.000000        35.65      46.0
+25%     84.500000   84.500000   26.500000        35.65      46.0
+50%     89.000000   89.000000   30.000000        35.65      46.0
+75%    117.000000  117.000000   63.000000        35.65      46.0
+max    135.000000  135.000000  113.000000        35.65      46.0
+2026-08-30 18:01:51,992 [INFO] [AQI_Validator]: AQI data cleaning completed and 19 records saved to clean_aqi_data.json.
