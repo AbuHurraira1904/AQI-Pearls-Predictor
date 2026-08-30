@@ -1,0 +1,28 @@
+name: Hourly AQI Feature Pipeline
+
+on:
+  workflow_dispatch:   # lets you trigger it manually from the GitHub UI
+  schedule:
+    - cron: "0 * * * *"   # every hour, on the hour (commented out during testing)
+
+jobs:
+  run-feature-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run feature pipeline
+        env:
+          AQICN_API_KEY: ${{ secrets.AQICN_API_KEY }}
+          HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+        run: python main.py
