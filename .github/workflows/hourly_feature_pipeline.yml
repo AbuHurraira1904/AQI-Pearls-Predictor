@@ -3,7 +3,7 @@ name: Hourly AQI Feature Pipeline
 on:
   workflow_dispatch:   # lets you trigger it manually from the GitHub UI
   schedule:
-    - cron: "0 * * * *"   # every hour, on the hour (commented out during testing)
+    - cron: "33 * * * *"   # every hour, on the hour (commented out during testing)
 
 jobs:
   run-feature-pipeline:
