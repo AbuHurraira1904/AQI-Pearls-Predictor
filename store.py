@@ -49,6 +49,25 @@ def save_to_feature_store(fs, fg_row, feature_group_name, version):
 
     return feature_group
 
+def get_all_rows(fs, feature_group_name, version):
+    logger = logging.getLogger("FeatureStoreLogger")
+
+    try:
+        feature_group = fs.get_feature_group(name=feature_group_name, version=version)
+        if feature_group is None:
+            logger.warning(f"Feature group '{feature_group_name}' version {version} does not exist.")
+            return pd.DataFrame()
+    except Exception as e:
+        logger.error(f"Error retrieving feature group: {e}")
+        raise
+
+    try:
+        df = feature_group.read()
+        return df.sort_values(by="timestamp", ascending=False).reset_index(drop=True)
+    except Exception as e:
+        logger.error(f"Error reading data from feature group: {e}")
+        raise
+
 def get_latest_row(fs, feature_group_name, version):
     logger = logging.getLogger("FeatureStoreLogger")
 
