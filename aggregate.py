@@ -58,7 +58,7 @@ def aqi_change_rate(current_aqi, last_feature_row):
     if last_feature_row is None:
         return None
     previous_aqi = last_feature_row["aqi"]
-    if hasattr(previous_aqi, "iloc"):  # handle a Series being passed in, not a scalar
+    if hasattr(previous_aqi, "iloc"):
         previous_aqi = previous_aqi.iloc[0]
     return current_aqi - previous_aqi
 
@@ -85,5 +85,5 @@ def assemble_aggregated_data(valid_df, last_feature_group):
         "temperature": temperature,
         "humidity": humidity,
         "aqi_change_rate": AQI_Change_Rate,
-        **Pollutant_Values,  # aqi, pm25, pm10
+        **Pollutant_Values,
     }
