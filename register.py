@@ -75,6 +75,33 @@ def get_model(mr,horizon_hours, version=None):
         )
         return None
 
+def get_current_champion_model(mr, horizon_hours):
+    name = _model_name(horizon_hours)
+
+    try:
+        models = mr.get_models(name)
+
+        if not models:
+            return None
+
+        champion = max(models, key=lambda model: model.version)
+
+        logger.info(
+            "Current champion for '%s' is v%s",
+            name,
+            champion.version,
+        )
+
+        return champion
+
+    except Exception as e:
+        logger.info(
+            "No model found for '%s': %s",
+            name,
+            e,
+        )
+        return None
+
 def load_model(hopsworks_model):
     local_dir = hopsworks_model.download()
     model_path = f"{local_dir}/model.joblib"
