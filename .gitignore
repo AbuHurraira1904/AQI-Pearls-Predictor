@@ -1,8 +1,6 @@
 *.env
 .venv/
 __pycache__/
-extra_data.py
-extra_data_1.py
 .cache.sqlite
 openaq_raw_all.json
 openaq_processed_dataset.json
@@ -13,3 +11,4 @@ cleaned_backfill.json
 registered_models/
 TRAINER.log
 FETCHER.log
+*_temp.py
