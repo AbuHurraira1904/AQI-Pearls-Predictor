@@ -48,7 +48,7 @@ def promote_if_better(mr, horizon_hours, challenger_result, min_improvement_pct=
         "threshold=%.4f -> %s",
         horizon_hours, champion_hw_model.version, champion_rmse,
         challenger_result["winner_name"], challenger_rmse,
-        improvement, min_improvement,
+        improvement, min_improvement_pct,
         "PROMOTE" if promote else "KEEP CHAMPION",
     )
  
@@ -67,11 +67,11 @@ def promote_if_better(mr, horizon_hours, challenger_result, min_improvement_pct=
     )
  
  
-def promote_all(mr, results, min_improvement=MIN_RMSE_IMPROVEMENT):
+def promote_all(mr, results, min_improvement_pct=MIN_RMSE_IMPROVEMENT_PCT):
     outcomes = {}
     for horizon_hours, challenger_result in results.items():
         outcomes[horizon_hours] = promote_if_better(
-            mr, horizon_hours, challenger_result, min_improvement
+            mr, horizon_hours, challenger_result, min_improvement_pct
         )
  
     logger.info("=== Promotion summary ===")
