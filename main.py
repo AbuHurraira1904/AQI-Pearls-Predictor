@@ -6,7 +6,7 @@ from validate import validate_aqi_data
 from aggregate import assemble_aggregated_data
 
 FEATURE_GROUP_NAME = "hourly_city_aqi"
-FEATURE_GROUP_VERSION = 1
+FEATURE_GROUP_VERSION = 2
 
 def setup_logging():
     logging.basicConfig(
