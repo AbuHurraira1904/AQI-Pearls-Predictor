@@ -1,6 +1,6 @@
 import logging
  
-from register import get_model, load_model, register_model
+from register import load_model, register_model, get_current_champion_model
 from train import evaluate
  
 logger = logging.getLogger(__name__)
@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 MIN_RMSE_IMPROVEMENT = 0.0
  
 def get_current_champion(mr, horizon_hours):
-    return get_model(mr, horizon_hours) # version None means latest champion
+    return get_current_champion_model(mr, horizon_hours)
  
  
 def promote_if_better(mr, horizon_hours, challenger_result, min_improvement=MIN_RMSE_IMPROVEMENT):
