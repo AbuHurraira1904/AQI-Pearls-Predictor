@@ -1,16 +1,11 @@
-from store import get_feature_store, get_latest_row, get_all_rows
 import pandas as pd
 import logging
 
-FEATURE_GROUP_NAME = "hourly_city_aqi"
-FEATURE_GROUP_VERSION = 1
-
-TEMPORARY_JSON = "temporary_fetch_group_storage.json"
 OUTPUT_JSON = "cleaned_backfill.json"
 
 MAX_GAP_HOURS_FOR_RATE = 3.0
 
-logger = logging.getLogger("BackfillCleaner")
+logger = logging.getLogger(__name__)
 
 def drop_null_change_rate_rows(df):
     length_before = len(df)
@@ -90,22 +85,14 @@ def recompute_change_rate(df):
 
 def clean(df, source_priority=None):
     df = drop_null_change_rate_rows(df)
-    df = dedup_by_hour(df)
+    df = dedup_by_hour(df, source_priority)
     df = recompute_change_rate(df)
     df = df.drop(columns=["dt", "hour_bucket", "offset_from_hour"])
     return df.sort_values("timestamp").reset_index(drop=True)
 
-def fetch_raw_feature_data():
-    # fs = get_feature_store()
-    # df = get_all_rows(fs, FEATURE_GROUP_NAME, FEATURE_GROUP_VERSION)
-    # df.to_json(TEMPORARY_JSON, orient="records", indent=4)
-    df = pd.read_json(TEMPORARY_JSON, convert_dates=False)  # temp
-    logger.info("Loaded %d raw rows from %s", len(df), TEMPORARY_JSON)  # temp
-    return df
 
+def get_cleaned_feature_data(df):
 
-def get_feature_data():
-    df = fetch_raw_feature_data()
     cleaned = clean(df)
     cleaned.to_json(OUTPUT_JSON, orient="records", indent=4)
     logger.info("Wrote %d cleaned rows to %s", len(cleaned), OUTPUT_JSON)
