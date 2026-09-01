@@ -1,0 +1,27 @@
+name: Daily AQI Trainig Pipeline
+
+on:
+  workflow_dispatch:   # lets you trigger it manually from the GitHub UI
+  schedule:
+    - cron: "30 5 * * *"   # every day, at 5:30 in the morning
+
+jobs:
+  run-feature-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements_training.txt
+
+      - name: Run training pipeline
+        env:
+          HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+        run: python main_train.py
