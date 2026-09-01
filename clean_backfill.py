@@ -7,6 +7,49 @@ MAX_GAP_HOURS_FOR_RATE = 3.0
 
 logger = logging.getLogger(__name__)
 
+def normalize_timestamp_column(df):
+    """
+    Ensure df['timestamp'] is plain int64 epoch-milliseconds, regardless of
+    how it arrived. This has now bitten the pipeline three separate times
+    from three different causes (read_json auto-parsing dates, an explicit
+    but wrong pd.to_datetime call, and Hopsworks' feature_group.read()
+    returning a real datetime64 column since the feature store defines
+    timestamp as a TIMESTAMP type) — so the fix belongs here, once, at the
+    start of clean(), rather than re-patched at each call site whenever a
+    new data source shows up with a different native representation.
+ 
+    Handles three shapes:
+      - pure datetime64 (tz-aware or naive)
+      - pure numeric (already epoch-ms)
+      - mixed 'object' dtype — what you get when a datetime64 frame and an
+        int64 frame are pd.concat'd BEFORE normalization: pandas doesn't
+        keep it as datetime64, it degrades to a column of literal mixed
+        Timestamp/int objects. pd.to_numeric can't parse a raw Timestamp,
+        so this case needs element-wise conversion.
+    """
+    df = df.copy()
+    col = df["timestamp"]
+ 
+    if pd.api.types.is_datetime64_any_dtype(col):
+        if col.dt.tz is None:
+            col = col.dt.tz_localize("UTC")
+        epoch = pd.Timestamp("1970-01-01", tz="UTC")
+        df["timestamp"] = ((col - epoch) // pd.Timedelta(milliseconds=1)).astype("int64")
+    elif col.dtype == object:
+        def _to_ms(v):
+            if isinstance(v, pd.Timestamp):
+                if v.tzinfo is None:
+                    v = v.tz_localize("UTC")
+                return int(v.value // 1_000_000)
+            return int(v)
+        df["timestamp"] = col.map(_to_ms).astype("int64")
+    else:
+        df["timestamp"] = pd.to_numeric(col).astype("int64")
+ 
+    return df
+
+
+
 def drop_null_change_rate_rows(df):
     length_before = len(df)
 
@@ -84,6 +127,7 @@ def recompute_change_rate(df):
 
 
 def clean(df, source_priority=None):
+    df = normalize_timestamp_column(df)
     df = drop_null_change_rate_rows(df)
     df = dedup_by_hour(df, source_priority)
     df = recompute_change_rate(df)
