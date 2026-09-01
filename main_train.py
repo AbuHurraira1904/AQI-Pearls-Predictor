@@ -7,8 +7,9 @@ from data_preparation import prepare_training_data
 from train import train_all_horizons
 from store import get_all_rows
 from promote import promote_all
-from main import FEATURE_GROUP_NAME
-from main import FEATURE_GROUP_VERSION
+
+FEATURE_GROUP_NAME = "hourly_city_aqi"
+FEATURE_GROUP_VERSION = 2
 
 TEMPORARY_JSON = "temporary_fetch_group_storage.json"
 
