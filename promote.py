@@ -5,13 +5,13 @@ from train import evaluate
  
 logger = logging.getLogger(__name__)
  
-MIN_RMSE_IMPROVEMENT = 0.0
+MIN_RMSE_IMPROVEMENT_PCT = 0.01
  
 def get_current_champion(mr, horizon_hours):
     return get_current_champion_model(mr, horizon_hours)
  
  
-def promote_if_better(mr, horizon_hours, challenger_result, min_improvement=MIN_RMSE_IMPROVEMENT):
+def promote_if_better(mr, horizon_hours, challenger_result, min_improvement_pct=MIN_RMSE_IMPROVEMENT_PCT):
     challenger_rmse = challenger_result["test_metrics"]["rmse"]
     champion_hw_model = get_current_champion(mr, horizon_hours)
  
@@ -39,7 +39,8 @@ def promote_if_better(mr, horizon_hours, challenger_result, min_improvement=MIN_
     champion_rmse = champion_metrics["rmse"]
  
     improvement = champion_rmse - challenger_rmse
-    promote = improvement > min_improvement
+    threshold = champion_rmse * min_improvement_pct
+    promote = improvement > threshold
  
     logger.info(
         "Horizon %dh: champion v%s rmse=%.4f (re-scored on today's test "
