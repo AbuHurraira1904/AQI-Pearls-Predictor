@@ -21,11 +21,11 @@ def fetch_single_uid(session, uid, logger):
             if data.get("status") == "ok":
                 return uid, data.get("data", {})
             else:
-                logging.error(f"API Error for UID {uid}: {data.get('data')}")
+                logger.error(f"API Error for UID {uid}: {data.get('data')}")
         else:
-            logging.error(f"HTTP Error {response.status_code} for UID {uid}")
+            logger.error(f"HTTP Error {response.status_code} for UID {uid}")
     except requests.RequestException as e:
-        logging.error(f"Request failed for UID {uid}: {e}")
+        logger.error(f"Request failed for UID {uid}: {e}")
 
     return uid, None
 
