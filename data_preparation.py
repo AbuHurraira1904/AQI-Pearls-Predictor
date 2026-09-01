@@ -3,7 +3,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-CLEANED_DATA_JSON = "cleaned_backfill.json"
+#CLEANED_DATA_JSON = "cleaned_backfill.json"
 REQUIRED_COLUMNS = ["timestamp", "hour", "day_of_week", "month", "temperature", "humidity", "aqi_change_rate", "aqi", "pm25", "pm10"]
 
 NON_NULLABLE_COLUMNS = ["timestamp", "hour", "day_of_week", "month", "temperature", "humidity", "aqi", "pm25", "pm10"]
@@ -13,11 +13,12 @@ HORIZON_HOURS = [24, 48, 72]
 
 TARGET_MATCH_TOLERANCE = pd.Timedelta(minutes=45)
 
-def get_cleaned_feature_data():
-    df = pd.read_json(CLEANED_DATA_JSON, convert_dates=False)
-    logger.info("Loaded %d raw rows from %s", len(df), CLEANED_DATA_JSON)
+'''A function that reads from the file instead of taking from the arguments passed'''
+# def get_cleaned_feature_data():
+#     df = pd.read_json(CLEANED_DATA_JSON, convert_dates=False)
+#     logger.info("Loaded %d raw rows from %s", len(df), CLEANED_DATA_JSON)
 
-    return df
+#     return df
 
 def validate_schema(df):
     missing = [c for c in REQUIRED_COLUMNS if c not in df.columns]
