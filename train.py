@@ -91,7 +91,7 @@ def train_candidates(train_df, val_df, horizon_hours):
     candidates = {
         "ridge": Ridge(),
         "random_forest": RandomForestRegressor(
-            n_estimators=200, random_state=42, n_jobs=-1
+            n_estimators=200, max_depth=15, min_samples_leaf=5, random_state=42, n_jobs=-1
         ),
     }
  
@@ -136,6 +136,9 @@ def train_horizon(df, horizon_hours):
         "n_train": len(train_df),
         "n_val": len(val_df),
         "n_test": len(test_df),
+
+        "X_test": X_test,
+        "y_test": y_test,
     }
 
 HORIZONS_HOURS = [24, 48, 72]
