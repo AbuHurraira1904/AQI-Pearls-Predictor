@@ -6,7 +6,7 @@ from clean_extra_backfill import get_extra_data
 from data_preparation import prepare_training_data
 from train import train_all_horizons
 from store import get_all_rows
-from register import register_all
+from promote import promote_all
 
 FEATURE_GROUP_NAME = "hourly_city_aqi"
 FEATURE_GROUP_VERSION = 1
@@ -49,8 +49,7 @@ def main():
 
     mr = hopsworks_client.get_model_registry()
 
-    registered_data = register_all(mr, training_results)
-
+    outcomes = promote_all(mr, training_results)
 
 if __name__ == "__main__":
     main()

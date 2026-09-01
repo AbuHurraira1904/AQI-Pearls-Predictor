@@ -62,3 +62,24 @@ def register_all(mr, results):
             n_test=r["n_test"],
         )
     return registered
+
+def get_model(mr,horizon_hours, version=None):
+    name = _model_name(horizon_hours)
+    try:
+        hopsworks_model = mr.get_model(name, version=version)
+        logger.info("Fetched model '%s' v%s", name, hopsworks_model.version)
+        return hopsworks_model
+    except Exception as e:
+        logger.info(
+            "No model found for '%s' (version=%s): %s", name, version, e
+        )
+        return None
+
+def load_model(hopsworks_model):
+    local_dir = hopsworks_model.download()
+    model_path = f"{local_dir}/model.joblib"
+    model = joblib.load(model_path)
+    logger.info("Loaded model from %s", model_path)
+    return model
+
+
