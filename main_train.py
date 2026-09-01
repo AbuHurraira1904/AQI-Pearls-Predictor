@@ -2,7 +2,7 @@ import logging
 import hopsworks_client
 import pandas as pd
 from clean_backfill import get_cleaned_feature_data
-from clean_extra_backfill import get_extra_data
+#from clean_extra_backfill import get_extra_data
 from data_preparation import prepare_training_data
 from train import train_all_horizons
 from store import get_all_rows
@@ -39,10 +39,11 @@ def main():
     # logger.info("Loaded %d raw rows from %s", len(df), TEMPORARY_JSON)  # temp
 
     '''This code only cleans data from hopsworks only and returns the cleaned data'''
-    #cleaned_df = get_cleaned_feature_data(df)
+    cleaned_df = get_cleaned_feature_data(df)
 
     '''Temporary function usage to join data from hopsworks and openaq and clean that and return the cleaned data'''
-    cleaned_df = get_extra_data(df) #temp
+    #cleaned_df = get_extra_data(df) #temp
+
     prepared_df = prepare_training_data(cleaned_df)
     training_results = train_all_horizons(prepared_df)
 
