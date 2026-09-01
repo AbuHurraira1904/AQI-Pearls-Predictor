@@ -112,6 +112,15 @@ def train_candidates(train_df, val_df, horizon_hours):
  
 def train_horizon(df, horizon_hours):
     horizon_df = prepare_horizon_dataset(df, horizon_hours)
+
+    MIN_TOTAL_SAMPLES = 10
+    if len(horizon_df) < MIN_TOTAL_SAMPLES:
+        logger.warning(
+            "Horizon %dh: Insufficient target matches (%d rows, minimum %d required). Skipping training.",
+            horizon_hours, len(horizon_df), MIN_TOTAL_SAMPLES
+        )
+        return None
+    
     train_df, val_df, test_df = chronological_split(horizon_df)
  
     winner_name, candidate_results = train_candidates(train_df, val_df, horizon_hours)
