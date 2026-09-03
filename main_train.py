@@ -9,7 +9,7 @@ from store import get_all_rows
 from promote import promote_all
 
 FEATURE_GROUP_NAME = "hourly_city_aqi"
-FEATURE_GROUP_VERSION = 2
+FEATURE_GROUP_VERSION = 3
 
 TEMPORARY_JSON = "temporary_fetch_group_storage.json"
 
