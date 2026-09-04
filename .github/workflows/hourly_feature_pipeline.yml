@@ -2,9 +2,6 @@ name: Hourly AQI Feature Pipeline
 
 on:
   workflow_dispatch:   # lets you trigger it manually from the GitHub UI
-  schedule:
-    - cron: "33 * * * *"   # every hour, on the hour (commented out during testing)
-
 jobs:
   run-feature-pipeline:
     runs-on: ubuntu-latest
@@ -26,3 +23,11 @@ jobs:
           AQICN_API_KEY: ${{ secrets.AQICN_API_KEY }}
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
         run: python main.py
+
+      - name: Commit updated Feast data
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add aqi_feature_repo/feature_repo/data/hourly_city_aqi.parquet
+          git commit -m "Add hourly AQI row (Feast)" || echo "No changes to commit"
+          git push
