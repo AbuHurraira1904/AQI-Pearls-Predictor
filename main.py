@@ -1,13 +1,11 @@
 import logging
-#import hopsworks_client
 from fetch import fetch_all_uids
-#from store import get_latest_row, save_to_feature_store
 from feast_store import save_to_feast, get_latest_row
 from validate import validate_aqi_data
 from aggregate import assemble_aggregated_data
 
-FEATURE_GROUP_NAME = "hourly_city_aqi"
-FEATURE_GROUP_VERSION = 3
+#FEATURE_GROUP_NAME = "hourly_city_aqi"
+#FEATURE_GROUP_VERSION = 3
 
 def setup_logging():
     logging.basicConfig(
@@ -23,20 +21,19 @@ def setup_logging():
 def main():
     setup_logging()
 
-    #aqi_data = fetch_all_uids()
-    #valid_aqi_data = validate_aqi_data(aqi_data)
+    aqi_data = fetch_all_uids()
+    valid_aqi_data = validate_aqi_data(aqi_data)
 
     #Deprecated code for hopsworks feature store, now using feast feature store
     #fs = hopsworks_client.get_feature_store()
     #last_feature_row = get_latest_row(fs, FEATURE_GROUP_NAME, FEATURE_GROUP_VERSION)
 
     last_feature_row = get_latest_row()
-    print(last_feature_row)
-    #fg_row = assemble_aggregated_data(valid_aqi_data, last_feature_row)
+    fg_row = assemble_aggregated_data(valid_aqi_data, last_feature_row)
 
     #Deprecated code for hopsworks feature store, now using feast feature store
     #save_to_feature_store(fs, fg_row, FEATURE_GROUP_NAME, FEATURE_GROUP_VERSION)
 
-    #save_to_feast(fg_row)
+    save_to_feast(fg_row)
 if __name__ == "__main__":
     main()
