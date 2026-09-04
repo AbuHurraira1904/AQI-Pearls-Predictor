@@ -12,3 +12,5 @@ registered_models/
 TRAINER.log
 FETCHER.log
 *_temp.py
+*_temp.json
+Extra_Scripts/
