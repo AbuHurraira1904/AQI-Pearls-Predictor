@@ -1,0 +1,51 @@
+
+A
+!
+__dummy"
+__dummy_idJ
+aqi_lahore
+ßÓìÔˆÓš§ßÓìÔˆÓš§
+;
+
+city"city_idJ
+aqi_lahore
+ßÓìÔÈõÍ§ßÓìÔÈõÍ§1"$5ef77b54-6cb6-4735-8d3f-d155999c925f*ßÓìÔ¸ê‡©2û
+Ú
+hourly_city_aqi
+aqi_lahorecity"
+aqi"
+pm25"
+pm10"
+temperature"
+humidity"
+aqi_change_rate"
+hour"
+day_of_week"	
+month2€ç„:	timestampZdata/hourly_city_aqi.parquetŠ1feast.infra.offline_stores.file_source.FileSource¢data/hourly_city_aqi.parquet’ßÓìÔØŸöt"ßÓìÔ î¾¥@b
+city_id’latest
+ßÓìÔÈõÍ§ßÓìÔÈõÍ§Rµ
+²
+,feast.infra.online_stores.sqlite.SqliteTable"
+cC:\Users\abuhu\Desktop\Internship\AQI-Pearls-Predictor\aqi_feature_repo\feature_repo\data\online.dbaqi_lahore_hourly_city_aqib«	timestampZdata/hourly_city_aqi.parquetŠ1feast.infra.offline_stores.file_source.FileSource¢data/hourly_city_aqi.parquetª
+aqi_lahore’ßÓìÔØŸöt"ßÓìÔ î¾¥Š*
+
+
+aqi_lahore
+ßÓìÔØŸötßÓìÔØŸöt’à
+İ
+hourly_city_aqi
+aqi_lahore"feature_view*û
+Ú
+hourly_city_aqi
+aqi_lahorecity"
+aqi"
+pm25"
+pm10"
+temperature"
+humidity"
+aqi_change_rate"
+hour"
+day_of_week"	
+month2€ç„:	timestampZdata/hourly_city_aqi.parquetŠ1feast.infra.offline_stores.file_source.FileSource¢data/hourly_city_aqi.parquet’ßÓìÔØŸöt"ßÓìÔ î¾¥@b
+city_id’latest
+ßÓìÔÈõÍ§ßÓìÔÈõÍ§2ßÓìÔ¸ê‡©B$6b38e8bf-0798-46fe-8519-cf1da45dff6c
