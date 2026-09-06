@@ -1,6 +1,6 @@
 # AQI-Pearls-Predictor
 
-A 100% serverless machine learning pipeline that predicts Lahore's Air Quality Index (AQI) 24, 48, and 72 hours ahead — from hourly data collection to a live, explainable dashboard.
+A 100% serverless machine learning pipeline that predicts Lahore's Air Quality Index (AQI) 24, 48, and 72 hours ahead from hourly data collection to a live, explainable dashboard.
 
 Built as part of the Pearls AQI Predictor internship project.
 
@@ -20,18 +20,25 @@ Built as part of the Pearls AQI Predictor internship project.
 
 ## Architecture
 
-```
-┌─────────────────────┐      ┌──────────────────┐      ┌───────────────────────┐      ┌────────────────────┐
-│  Hourly Feature      │      │  Feast Offline    │      │  Daily Training        │      │  Streamlit           │
-│  Pipeline            │ ───► │  Feature Store     │ ───► │  Pipeline               │ ───► │  Dashboard            │
-│  (GitHub Actions)    │      │  (Parquet in repo)  │      │  (GitHub Actions)      │      │  (Streamlit Cloud)   │
-└─────────────────────┘      └──────────────────┘      └───────────────────────┘      └────────────────────┘
+```mermaid
+flowchart LR
+    A["Hourly Feature Pipeline<br/>(GitHub Actions)<br/>fetch → validate → aggregate"]
+    B[("Feast Offline<br/>Feature Store<br/>Parquet in repo")]
+    C["Daily Training Pipeline<br/>(GitHub Actions)<br/>train → promote → register"]
+    D["Streamlit Dashboard<br/>(Streamlit Cloud)<br/>predictions · EDA · SHAP/LIME"]
+    R[("Hopsworks<br/>Model Registry")]
+
+    A -->|writes hourly rows| B
+    B -->|reads history| C
+    C -->|registers champion| R
+    B -->|latest features| D
+    R -->|loads champion model| D
 ```
 
-1. **Feature pipeline** — runs hourly (`main.py`): fetch → validate → aggregate → write to Feast
-2. **Feature store** — Feast (file-based, offline), Parquet committed back to the repo as durable storage since GitHub Actions runners are ephemeral
-3. **Training pipeline** — runs daily (`main_train.py`): load from Feast → clean/backfill → prepare targets → train candidates per horizon → champion/challenger promotion → register in Hopsworks
-4. **Dashboard** — `app.py`, three tabs: Live Predictions, EDA, and Explainability (SHAP/LIME)
+1. **Feature pipeline** - runs hourly (`main.py`): fetch -> validate -> aggregate -> write to Feast
+2. **Feature store** - Feast (file-based, offline), Parquet committed back to the repo as durable storage since GitHub Actions runners are ephemeral
+3. **Training pipeline** - runs daily (`main_train.py`): load from Feast -> clean/backfill -> prepare targets -> train candidates per horizon -> champion/challenger promotion -> register in Hopsworks
+4. **Dashboard** - `app.py`, four tabs: Live Predictions, EDA, Explainability (SHAP), Explainability (LIME)
 
 Scheduling is handled via GitHub Actions `workflow_dispatch`, triggered externally by [cron-job.org](https://cron-job.org).
 
@@ -41,7 +48,7 @@ Scheduling is handled via GitHub Actions `workflow_dispatch`, triggered external
 
 | Purpose | Tool |
 |---|---|
-| Data source | AQICN API (22 curated Lahore stations), OpenAQ (one-time historical backfill) |
+| Data source | AQICN API (22 curated Lahore stations) |
 | Feature store | [Feast](https://feast.dev) (offline, file-based) |
 | Model registry | [Hopsworks](https://hopsworks.ai) |
 | ML models | scikit-learn — Ridge Regression, Random Forest |
@@ -57,45 +64,48 @@ Scheduling is handled via GitHub Actions `workflow_dispatch`, triggered external
 ## Repository structure
 
 ```
-├── fetch.py              # Pulls raw AQI/pollutant/weather data from AQICN
-├── validate.py            # Flags stale, out-of-range, and outlier station readings
-├── aggregate.py            # IDW-weighted city-wide aggregation + change-rate calc
-├── main.py                 # Hourly feature pipeline entry point
+├── fetch.py                           # Pulls raw AQI/pollutant/weather data from AQICN
+├── validate.py                        # Flags stale, out-of-range, and outlier station readings
+├── aggregate.py                       # IDW-weighted city-wide aggregation + change-rate calc
+├── main.py                            # Hourly feature pipeline entry point
 │
-├── feast_store.py           # Feast read/write layer (aqi_feature_repo/)
-├── aqi_feature_repo/          # Feast feature repo (feature_store.yaml, features.py, Parquet data)
-├── store.py                  # (Deprecated) Hopsworks feature-store layer
+├── feast_store.py                     # Feast read/write layer (aqi_feature_repo/)
+├── aqi_feature_repo/                  # Feast feature repo (feature_store.yaml, features.py, Parquet data)
+├── store.py                           # (Deprecated) Hopsworks feature-store layer
 │
-├── clean_backfill.py          # Timestamp normalization, dedup, change-rate recompute
-├── data_preparation.py         # Builds horizon targets (24h/48h/72h) via time-based merge
-├── train.py                    # Candidate training, chronological split, evaluation
-├── promote.py                   # Champion/challenger promotion logic
-├── register.py                   # Hopsworks Model Registry read/write
-├── hopsworks_client.py             # Hopsworks login/session helper
-├── main_train.py                    # Daily training pipeline entry point
+├── clean_backfill.py                  # Timestamp normalization, dedup, change-rate recompute
+├── data_preparation.py                # Builds horizon targets (24h/48h/72h) via time-based merge
+├── train.py                           # Candidate training, chronological split, evaluation
+├── promote.py                         # Champion/challenger promotion logic
+├── register.py                        # Hopsworks Model Registry read/write
+├── hopsworks_client.py                # Hopsworks login/session helper
+├── main_train.py                      # Daily training pipeline entry point
 │
-├── eda_plots.py                      # 10 reusable EDA plot functions
+├── eda_plots.py                       # 10 reusable EDA plot functions
 ├── shap_explain.py                    # SHAP explainability (Random Forest only)
-├── lime_explain.py                     # LIME explainability (model-agnostic)
+├── lime_explain.py                    # LIME explainability (model-agnostic)
 │
-├── constants.py                         # AQI hazard bands, day names, hazard classifier
-├── dashboard_data.py                     # Data/Feast/Hopsworks logic for the dashboard (no Streamlit imports)
-├── app.py                                 # Streamlit dashboard entry point
+├── constants.py                       # AQI hazard bands, day names, hazard classifier
+├── dashboard_data.py                  # Data/Feast/Hopsworks logic for the dashboard (no Streamlit imports)
+├── app.py                             # Streamlit dashboard entry point
 │
-├── AQI_Stations.json                       # Station metadata (22 Lahore stations)
-├── city_centroid.ini                        # Lahore centroid coordinates for IDW
+├── AQI_Stations.json                  # Station metadata (22 Lahore stations)
+├── city_centroid.ini                  # Lahore centroid coordinates for IDW
 │
 └── notebooks/
-    ├── AQI_EDA.ipynb                          # Exploratory data analysis
-    ├── shap_explainability.ipynb               # SHAP walkthrough
-    └── lime_explainability.ipynb                # LIME walkthrough
+    ├── AQI_EDA.ipynb                  # Exploratory data analysis
+    ├── shap_explainability.ipynb      # SHAP walkthrough
+    └── lime_explainability.ipynb      # LIME walkthrough
 ```
 
 ---
+### Streamlit App
+
+Access the deployed streamlit service here: https://aqi-pearls-predictor-hidara.streamlit.app/
 
 ## Setup
 
-### Prerequisites
+### Prerequisites (To run Locally)
 - Python 3.11
 - An [AQICN API token](https://aqicn.org/data-platform/token/)
 - A [Hopsworks](https://hopsworks.ai) account and API key (free tier)
@@ -103,7 +113,7 @@ Scheduling is handled via GitHub Actions `workflow_dispatch`, triggered external
 ### Installation
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/AbuHurraira1904/AQI-Pearls-Predictor.git
 cd AQI-Pearls-Predictor
 pip install -r requirements.txt
 ```
@@ -117,12 +127,10 @@ AQICN_API_KEY=your_aqicn_token
 HOPSWORKS_API_KEY=your_hopsworks_key
 ```
 
-When deployed on Streamlit Community Cloud, set the same values under **Settings → Secrets** instead — `hopsworks_client.py` checks `st.secrets` first and falls back to `.env` locally.
-
 ### GitHub Actions setup
 
 The Feast Parquet commit-back step requires write access:
-**Settings → Actions → General → Workflow permissions → Read and write permissions**
+**Settings -> Actions -> General -> Workflow permissions -> Read and write permissions**
 
 ---
 
@@ -156,8 +164,8 @@ streamlit run app.py
 
 ## Explainability
 
-- **SHAP** (`shap_explain.py`) — `TreeExplainer`, applies only to horizons where Random Forest won (Ridge horizons are skipped with a logged warning, since TreeExplainer is tree-model-specific)
-- **LIME** (`lime_explain.py`) — model-agnostic, works for any horizon regardless of winner; its "summary" view is an approximation built by averaging local feature weights across a sample of test rows, since LIME has no native global explanation
+- **SHAP** (`shap_explain.py`) - `TreeExplainer`, applies only to horizons where Random Forest won (Ridge horizons are skipped with a logged warning, since TreeExplainer is tree-model-specific)
+- **LIME** (`lime_explain.py`) - model-agnostic, works for any horizon regardless of winner; its "summary" view is an approximation built by averaging local feature weights across a sample of test rows, since LIME has no native global explanation
 
 Both read directly from `training_results.pkl` (saved at the end of `main_train.py`) without retraining, so explanations always reflect the exact models evaluated in the most recent training run.
 
@@ -167,9 +175,10 @@ Both read directly from `training_results.pkl` (saved at the end of `main_train.
 
 Three tabs, refreshing automatically every 90 minutes:
 
-- **Live Predictions** — current AQI, hazard-banded forecasts for all three horizons, historical trend chart
-- **EDA** — static pre-generated plots (temporal patterns, distributions, correlations, data quality) with a manual "Regenerate" option
-- **Explainability (SHAP / LIME)** — static pre-generated explanation plots per horizon, also with "Regenerate"
+- **Live Predictions** - current AQI, hazard-banded forecasts for all three horizons, historical trend chart
+- **EDA** - static pre-generated plots (temporal patterns, distributions, correlations, data quality) with a manual "Regenerate" option
+- **Explainability (SHAP)** - static pre-generated explanation plots per horizon, also with "Regenerate"
+- **Explainability (LIME)** - static pre-generated explanation plots per horizon, also with "Regenerate"
 
 Plots are served as static PNGs by default rather than rendered live, for dashboard performance; regeneration is opt-in via button.
 
@@ -177,7 +186,7 @@ Plots are served as static PNGs by default rather than rendered live, for dashbo
 
 ## Known limitations
 
-- Single-season data window — monthly seasonality patterns and long-range R² are not yet meaningful
+- Single-season data window - monthly seasonality patterns and long-range R² are not yet meaningful
 - Hopsworks free-tier feature store materialization is unreliable; Feast is used instead for all offline feature storage
 - SHAP explainability is unavailable for horizons where Ridge (not Random Forest) wins
 
@@ -192,4 +201,4 @@ Plots are served as static PNGs by default rather than rendered live, for dashbo
 
 ## Further reading
 
-See the accompanying project report for design-decision rationale, debugging history, and detailed EDA findings.
+See the accompanying project report: `Project_Report.pdf` for design-decision rationale, debugging history, and detailed EDA findings.
