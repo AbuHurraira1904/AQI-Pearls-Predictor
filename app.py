@@ -17,6 +17,7 @@ from dashboard_data import (
 )
 import eda_plots
 from shap_explain import explain_horizon
+from lime_explain import explain_horizon as explain_horizon_lime
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -204,6 +205,51 @@ def render_shap_tab():
             st.info("Not generated yet -- hit Regenerate above.")
 
 
+def render_lime_tab():
+    st.caption(
+        "Static plots by default, generated from the last main_train.py run "
+        "(training_results.pkl). Unlike SHAP, LIME works for any model type "
+        "(not just Random Forest), and its 'summary' plot here is an "
+        "approximation -- LIME is fundamentally a local method, so this "
+        "averages feature weights across a sample of test rows rather than "
+        "computing one directly like SHAP's beeswarm plot."
+    )
+ 
+    if st.button("\U0001F504 Regenerate LIME plots", key="regen_lime"):
+        training_results = load_training_results()
+        if training_results is None:
+            st.error("training_results.pkl not found -- run main_train.py first.")
+        elif not all("X_train" in r for r in training_results.values() if r is not None):
+            st.error(
+                "training_results.pkl is missing X_train -- update train.py "
+                "to return X_train and re-run main_train.py first."
+            )
+        else:
+            with st.spinner("Computing LIME explanations and regenerating plots..."):
+                for h, result in training_results.items():
+                    explanation = explain_horizon_lime(result)
+                    if explanation is None:
+                        continue
+                    for name, fig in explanation.items():
+                        fig.savefig(
+                            os.path.join(ASSETS_DIR, f"lime_{h}h_{name}.png"),
+                            bbox_inches="tight", dpi=150,
+                        )
+                st.success("LIME plots regenerated.")
+ 
+    for h in (24, 48, 72):
+        st.subheader(f"{h}h Horizon")
+        found_any = False
+        for name in ("summary", "best", "worst"):
+            path = os.path.join(ASSETS_DIR, f"lime_{h}h_{name}.png")
+            if os.path.exists(path):
+                found_any = True
+                st.image(path, caption=name, use_column_width=True)
+        if not found_any:
+            st.info("Not generated yet -- hit Regenerate above.")
+ 
+
+
 def main():
     st.title("Lahore AQI Predictor")
     st.caption(
@@ -211,7 +257,9 @@ def main():
         f"champion models in the Hopsworks model registry."
     )
 
-    tab_predictions, tab_eda, tab_shap = st.tabs(["Live Predictions", "EDA", "Explainability (SHAP)"])
+    tab_predictions, tab_eda, tab_shap, tab_lime = st.tabs(
+        ["Live Predictions", "EDA", "Explainability (SHAP)", "Explainability (LIME)"]
+    )
 
     with tab_predictions:
         render_predictions_tab()
@@ -222,6 +270,8 @@ def main():
     with tab_shap:
         render_shap_tab()
 
+    with tab_lime:
+        render_lime_tab()
 
 if __name__ == "__main__":
     main()

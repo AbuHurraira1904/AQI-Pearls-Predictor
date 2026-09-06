@@ -11,3 +11,4 @@ FETCHER.log
 Extra_Scripts/
 .ipynb_checkpoints/
 SHAP_FIGURES/
+faux_requirements.txt

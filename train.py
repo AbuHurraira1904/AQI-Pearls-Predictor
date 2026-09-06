@@ -122,6 +122,7 @@ def train_horizon(df, horizon_hours):
         return None
     
     train_df, val_df, test_df = chronological_split(horizon_df)
+    X_train, y_train = _xy(train_df, horizon_hours)
  
     winner_name, candidate_results = train_candidates(train_df, val_df, horizon_hours)
     winner_model = candidate_results[winner_name]["model"]
@@ -146,6 +147,8 @@ def train_horizon(df, horizon_hours):
         "n_val": len(val_df),
         "n_test": len(test_df),
 
+        "X_train": X_train,
+        "y_train": y_train,
         "X_test": X_test,
         "y_test": y_test,
     }
@@ -157,6 +160,7 @@ def train_all_horizons(df):
     for h in HORIZONS_HOURS:
         logger.info("=== Training horizon: %dh ===", h)
         results[h] = train_horizon(df, horizon_hours=h)
+
  
     logger.info("=== Summary (test metrics, winning model per horizon) ===")
     for h, r in results.items():
