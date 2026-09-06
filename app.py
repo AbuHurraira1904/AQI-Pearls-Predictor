@@ -162,7 +162,7 @@ def render_eda_tab():
         path = os.path.join(ASSETS_DIR, filename)
         st.subheader(display_name)
         if os.path.exists(path):
-            st.image(path, use_container_width=True)
+            st.image(path, use_column_width=True)
         else:
             st.info("Not generated yet -- hit Regenerate above.")
 
@@ -204,7 +204,7 @@ def render_shap_tab():
             path = os.path.join(ASSETS_DIR, f"shap_{h}h_{name}.png")
             if os.path.exists(path):
                 found_any = True
-                st.image(path, caption=name, use_container_width=True)
+                st.image(path, caption=name, use_column_width=True)
         if not found_any:
             st.info("Not generated yet -- hit Regenerate above.")
 
