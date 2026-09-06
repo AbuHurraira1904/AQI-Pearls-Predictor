@@ -6,14 +6,14 @@ import plotly.graph_objects as go
 import streamlit as st
 from streamlit_autorefresh import st_autorefresh
 
+
+from constants import AQI_BANDS, classify_hazard
 from dashboard_data import (
-    classify_hazard,
     fetch_champion_models,
     fetch_historical_features,
     fetch_latest_features,
     load_training_results,
     predict_all_horizons,
-    HAZARD_BANDS,
 )
 import eda_plots
 from shap_explain import explain_horizon
@@ -23,15 +23,12 @@ logger = logging.getLogger(__name__)
 
 st.set_page_config(page_title="Lahore AQI Predictor", page_icon="\U0001F32B", layout="wide")
 
-REFRESH_INTERVAL_MINUTES = 12
+REFRESH_INTERVAL_MINUTES = 90
 TREND_LOOKBACK_HOURS = 7 * 24  # last week
 
 ASSETS_DIR = "assets"
 os.makedirs(ASSETS_DIR, exist_ok=True)
 
-# Maps a stable display name -> (asset filename, function that builds the fig).
-# The function is only called when the user hits "Regenerate" -- otherwise
-# we just show whatever PNG is already sitting in assets/.
 EDA_FIGURES = {
     "AQI Over Time": ("eda_timeseries.png", lambda df: eda_plots.plot_aqi_timeseries(df)),
     "Hourly Pattern": ("eda_hourly.png", lambda df: eda_plots.plot_hourly_pattern(df)),
@@ -44,9 +41,7 @@ EDA_FIGURES = {
     "Missingness Over Time": ("eda_missingness.png", lambda df: eda_plots.plot_missingness_over_time(df)),
 }
 
-# Reruns the whole script automatically every REFRESH_INTERVAL_MINUTES,
-# without any user interaction -- plain Streamlit only reruns on user
-# interaction, so this is what actually makes the "auto" in auto-refresh work.
+# Reruns the whole script automatically every REFRESH_INTERVAL_MINUTES.
 st_autorefresh(interval=REFRESH_INTERVAL_MINUTES * 60 * 1000, key="data_refresh")
 
 
@@ -87,7 +82,7 @@ def render_trend_chart(history_df):
         line=dict(color="black", width=1.5),
     ))
 
-    for low, high, label, color in HAZARD_BANDS:
+    for low, high, label, color in AQI_BANDS:
         fig.add_hrect(y0=low, y1=high, fillcolor=color, opacity=0.08, line_width=0)
 
     fig.update_layout(

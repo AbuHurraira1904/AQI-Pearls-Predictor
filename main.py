@@ -4,9 +4,6 @@ from feast_store import save_to_feast, get_latest_row
 from validate import validate_aqi_data
 from aggregate import assemble_aggregated_data
 
-#FEATURE_GROUP_NAME = "hourly_city_aqi"
-#FEATURE_GROUP_VERSION = 3
-
 def setup_logging():
     logging.basicConfig(
         level=logging.INFO,

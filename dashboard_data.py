@@ -7,33 +7,11 @@ from feast_store import get_latest_row, get_all_rows
 from hopsworks_client import get_model_registry
 from register import get_current_champion_model, load_model
 from train import FEATURE_COLUMNS, CHANGE_RATE_FILL_VALUE, HORIZONS_HOURS
+from constants import AQI_BANDS, classify_hazard
 
 logger = logging.getLogger(__name__)
 
 TRAINING_RESULTS_PATH = "training_results.pkl"
-
-# Standard US EPA AQI hazard bands.
-HAZARD_BANDS = [
-    (0, 50, "Good", "#00e400"),
-    (51, 100, "Moderate", "#ffff00"),
-    (101, 150, "Unhealthy for Sensitive Groups", "#ff7e00"),
-    (151, 200, "Unhealthy", "#ff0000"),
-    (201, 300, "Very Unhealthy", "#8f3f97"),
-    (301, 500, "Hazardous", "#7e0023"),
-]
-
-
-def classify_hazard(aqi_value):
-    """Returns (label, color) for a given AQI value, per EPA bands above."""
-    if aqi_value is None or pd.isna(aqi_value):
-        return "Unknown", "#808080"
-    for low, high, label, color in HAZARD_BANDS:
-        if low <= aqi_value <= high:
-            return label, color
-    # Above 500 -- off the standard scale, still treat as Hazardous.
-    if aqi_value > 500:
-        return "Hazardous", "#7e0023"
-    return "Unknown", "#808080"
 
 
 def fetch_latest_features():

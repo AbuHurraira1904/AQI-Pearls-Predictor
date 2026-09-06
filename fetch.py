@@ -11,8 +11,6 @@ AQICN_KEY = os.getenv("AQICN_API_KEY")
 if not AQICN_KEY:
     raise ValueError("AQICN_API_KEY not found in environment variables. Please set it in your .env file.")
 
-CITY = "Lahore"
-
 def fetch_single_uid(session, uid, logger):
     try:
         response = session.get(f"https://api.waqi.info/feed/@{uid}/", timeout=10)

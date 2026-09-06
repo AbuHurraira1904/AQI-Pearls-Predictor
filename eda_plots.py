@@ -4,22 +4,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
+from constants import AQI_BANDS, DAY_NAMES
  
 logger = logging.getLogger(__name__)
  
 sns.set_theme(style="whitegrid")
- 
-DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
- 
-AQI_BANDS = [
-    (0, 50, "Good", "#00e400"),
-    (51, 100, "Moderate", "#ffff00"),
-    (101, 150, "Unhealthy (Sensitive)", "#ff7e00"),
-    (151, 200, "Unhealthy", "#ff0000"),
-    (201, 300, "Very Unhealthy", "#8f3f97"),
-    (301, 500, "Hazardous", "#7e0023"),
-]
- 
  
 def _prep_datetime(df):
     """Internal helper: attach a real datetime column without mutating input."""

@@ -9,14 +9,14 @@ logger = logging.getLogger(__name__)
 
 def normalize_timestamp_column(df):
     """
-    Ensure df['timestamp'] is plain int64 epoch-milliseconds, regardless of
-    how it arrived. This has now bitten the pipeline three separate times
+    Made with Claude to ensure df['timestamp'] is plain int64 epoch-milliseconds, regardless of
+    how it arrived. This has now caused problems with the pipeline three separate times
     from three different causes (read_json auto-parsing dates, an explicit
     but wrong pd.to_datetime call, and Hopsworks' feature_group.read()
     returning a real datetime64 column since the feature store defines
-    timestamp as a TIMESTAMP type) — so the fix belongs here, once, at the
-    start of clean(), rather than re-patched at each call site whenever a
-    new data source shows up with a different native representation.
+    timestamp as a TIMESTAMP type). This is a fix that belongs here, once, at the
+    start of clean(), rather than re-converted at each call site whenever a
+    new data from a new source shows up with a different representation.
  
     Handles three shapes:
       - pure datetime64 (tz-aware or naive)

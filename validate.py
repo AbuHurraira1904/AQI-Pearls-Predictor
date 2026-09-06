@@ -1,4 +1,3 @@
-import json
 import logging
 import pandas as pd
 from pathlib import Path
@@ -42,10 +41,6 @@ DEFAULT_STALENESS_THRESHOLD = pd.Timedelta(hours=3)
 MIN_VALID_STATIONS = 5
 OUTLIER_DEVIATION_AQI = 50
 REQUIRED_FIELDS = ["aqi", "pm25"]
-
-WEATHER_FIELDS = ["temperature", "humidity"]
-WEATHER_SOURCE_NETWORK = "The Urban Unit"
-LAST_KNOWN_WEATHER_PATH = Path("last_known_weather.json")
 
 def flag_stale_data(df):
     df = df.copy()
@@ -123,7 +118,7 @@ def validate_aqi_data(raw_aqi_data):
 
     report(df, valid_df, logger)
 
-    valid_df.to_json("clean_aqi_data.json", orient="records", indent=4, date_format="iso")
-    logger.info("AQI data cleaning completed and %d records saved to clean_aqi_data.json.", len(valid_df))
+    #valid_df.to_json("clean_aqi_data.json", orient="records", indent=4, date_format="iso")
+    #logger.info("AQI data cleaning completed and %d records saved to clean_aqi_data.json.", len(valid_df))
     
     return valid_df
