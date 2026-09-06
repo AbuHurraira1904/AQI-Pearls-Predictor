@@ -2,11 +2,6 @@
 .venv/
 __pycache__/
 .cache.sqlite
-openaq_raw_all.json
-openaq_processed_dataset.json
-clean_extra_backfill.py
-temporary_fetch_group_storage.json
-temporary_report_group_storage.json
 cleaned_backfill.json
 registered_models/
 TRAINER.log
@@ -14,3 +9,6 @@ FETCHER.log
 *_temp.py
 *_temp.json
 Extra_Scripts/
+.ipynb_checkpoints/
+SHAP_FIGURES/
+training_results.pkl
