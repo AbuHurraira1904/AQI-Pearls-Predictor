@@ -11,4 +11,3 @@ FETCHER.log
 Extra_Scripts/
 .ipynb_checkpoints/
 SHAP_FIGURES/
-training_results.pkl
